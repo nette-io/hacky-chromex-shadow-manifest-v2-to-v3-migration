@@ -33,12 +33,18 @@
                "\n\n\n"
                "// `out/background.js`, unchanged:" "\n\n" background))))
 
+(defn- fix-content-security-policy [manifest]
+  (update manifest "content_security_policy"
+          (fn [s]
+            {"extension_pages" s})))
+
 (defn patch-extension-outputs-manifest-v2->v3
   {:shadow.build/stage :flush}
   [build-state & _args]
   (let [manifest (read-manifest)
         manifest' (-> manifest
-                      fix-background-key)]
+                      fix-background-key
+                      fix-content-security-policy)]
     (prn)
     (prn "manifest.json before:")
     (pprint manifest)
