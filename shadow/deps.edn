@@ -1,0 +1,10 @@
+{:paths ["src/background"
+         "src/popup"
+         "src/content-script"]
+
+ :deps  {org.clojure/clojure       {:mvn/version "RELEASE"}
+         org.clojure/clojurescript {:mvn/version "RELEASE"}
+         binaryage/devtools        {:mvn/version "RELEASE"}
+         binaryage/chromex         {:local/root "../.."}
+         ; ---
+         thheller/shadow-cljs      {:mvn/version "RELEASE"}}}
