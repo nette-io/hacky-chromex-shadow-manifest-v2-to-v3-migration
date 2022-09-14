@@ -42,4 +42,9 @@ Then:
 
 ### Some questions!
 
-...
+1. Regarding (3)(ii) [above](https://github.com/nette-io/hacky-chromex-shadow-manifest-v2-to-v3-migration#changes-made-and-why), perhaps _hot reloading of code during development_ could be recovered if there were a way to deal with the many background-relevant scripts that `shadow-cljs watch extension` generates in addition to `out/background.js` — as opposed to just `out/shared.js` for `shadow-cljs release extension`. So... aside from prepending every single one to `out/background.js`, what options are there?
+   1. They could potentially be [statically imported](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#man-sw) if shadow threw a few [export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)s in during building, right?
+   2. Something else?
+2. With `'unsafe-eval` [gone in Manifest V3, even during dev](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#content-security-policy), it's unclear how to get a REPL hooked up to the various runtimes comprising a running extension. (Related shadow-cljs issue/comment: https://github.com/thheller/shadow-cljs/issues/902#issuecomment-1021935288.) And even if it _were_ possible, the [short-lived nature of background service workers](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#background-service-workers) (replacing Manifest V2's background pages) would make REPL-driven dev against background-related `cljs` files annoying... probably. Are there any good solutions here, aside from maybe:
+   1. Developing against Manifest V2 in a V3-compatible way, then building the extension as V3?
+   2. Developing against a [modified Chromium, enabling unsafe-eval](https://github.com/thheller/shadow-cljs/issues/902#issuecomment-1021973818)?
