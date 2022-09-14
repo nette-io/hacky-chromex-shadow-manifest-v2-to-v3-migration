@@ -5,8 +5,9 @@
 
  :permissions      ["activeTab"
                     ; storage permission is needed for chromex-sample.background.storage/test-storage!
-                    "storage"
-                    "http://*/*"
+                    "storage"]
+
+ :host-permissions ["http://*/*"
                     "https://*/*"]
 
  :browser-action   {:default-title "Show the popup"
