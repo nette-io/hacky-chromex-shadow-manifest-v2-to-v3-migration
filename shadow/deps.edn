@@ -1,9 +1,12 @@
 {:paths ["src/background"
          "src/popup"
-         "src/content-script"]
+         "src/content-script"
+         "build"]
 
  :deps  {org.clojure/clojure       {:mvn/version "1.11.1"}
          org.clojure/clojurescript {:mvn/version "1.11.60"}
+         org.clojure/data.json     {:mvn/version "2.4.0"}
+         ; ---
          binaryage/devtools        {:mvn/version "1.0.6"}
          binaryage/chromex         {:mvn/version "0.9.3"}
          ; ---

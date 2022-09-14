@@ -16,4 +16,5 @@
                                                                 :run-at  "document_end"}
                                                :entries        [chromex-sample.content-script]}
                               :popup          {:output-type :chrome/shared
-                                               :entries     [chromex-sample.popup]}}}}}
+                                               :entries     [chromex-sample.popup]}}
+           :build-hooks [(hooks.core/patch-extension-outputs-manifest-v2->v3)]}}}
