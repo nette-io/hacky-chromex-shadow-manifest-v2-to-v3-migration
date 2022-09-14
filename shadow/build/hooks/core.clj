@@ -1,7 +1,8 @@
 (ns hooks.core
   (:require
     [clojure.data.json :as json]
-    [clojure.pprint :refer [pprint]]))
+    [clojure.pprint :refer [pprint]]
+    [clojure.set :refer [rename-keys]]))
 
 (defn- read-manifest []
   (json/read-str (slurp "resources/unpacked/manifest.json")))
@@ -38,13 +39,17 @@
           (fn [s]
             {"extension_pages" s})))
 
+(defn- fix-actions [manifest]
+  (rename-keys manifest {"browser_action" "action"}))
+
 (defn patch-extension-outputs-manifest-v2->v3
   {:shadow.build/stage :flush}
   [build-state & _args]
   (let [manifest (read-manifest)
         manifest' (-> manifest
                       fix-background-key
-                      fix-content-security-policy)]
+                      fix-content-security-policy
+                      fix-actions)]
     (prn)
     (prn "manifest.json before:")
     (pprint manifest)
