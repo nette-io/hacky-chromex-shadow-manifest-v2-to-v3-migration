@@ -2,7 +2,7 @@
 
 Assuming you have the [shadow-cljs npm package](https://shadow-cljs.github.io/docs/UsersGuide.html#_high_level_overview) installed:
 
-1. From the `shadow/` directory, run `shadow release extension` and wait for the build to complete.
+1. From the `shadow/` directory, run `shadow-cljs release extension` and wait for the build to complete.
 2. Go to `"chrome://extensions"`.
 3. Toggle on 'Developer mode' in the top right of the page.
 4. Click the 'Load unpacked' button and find `~/[...]/hacky-chromex-shadow-manifest-v2-to-v3-migration/shadow/resources/unpacked`.
